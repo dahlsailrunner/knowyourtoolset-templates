@@ -58,6 +58,12 @@ Artifactory Nuget feed.
 
 Check out the Readme and Instructions documents in that folder (for your generated project) for more details about this template.
 
+Sample instance created with following command:
+
+`dotnet new kyt-package -o KnowYourToolset.SamplePackage`
+
+Repo is here (and it has a pre-release version and a formal `1.0.0` version published for you to see): https://github.com/dahlsailrunner/knowyourtoolset-samplepackage
+
 ## Things to try 
 Check the `Instructions.md` file for some simple things to try and more detailed guidance on introducing 
 your own logic into the projects / applications. 
