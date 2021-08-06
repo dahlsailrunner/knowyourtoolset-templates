@@ -30,8 +30,9 @@ https://github.com/dahlsailrunner/knowyourtoolset-templates
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />  
-	<Compile Remove="**\*" />	
+    <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" /> 
+    <None Include="readme.md" Pack="true" PackagePath="\"/> 
+	  <Compile Remove="**\*" />	
   </ItemGroup>
 
 </Project>
