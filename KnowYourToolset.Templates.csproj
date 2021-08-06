@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>0.0.9</PackageVersion>
+    <PackageVersion>0.1.0</PackageVersion>
     <PackageId>KnowYourToolset.Templates</PackageId>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Title>KnowYourToolset Templates</Title>
