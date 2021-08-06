@@ -9,8 +9,7 @@ Install (see below for more information): `dotnet new -i KnowYourToolset.Templat
 This package and repo contains sample .NET templates that can help jump-start .NET development efforts.
 
 Included templates:
-* `kyt-package`: Creates a .NET Standard class library with [MinVer](https://github.com/adamralph/minver) and [Serilog](https://github.com/serilog/serilog) added and includes a `YAML`
-CI build definition that publishes the package to NuGet.
+* `kyt-package`: Creates a .NET Standard class library with [MinVer](https://github.com/adamralph/minver) and [Serilog](https://github.com/serilog/serilog) added and includes a GitHub action  that publishes the package to NuGet (assuming you create a secret with your NuGet API Key).
 
 ## Use cases
 These templates can be modified to include YOUR best practices and cross-cutting concerns.  Just fork the repo 
