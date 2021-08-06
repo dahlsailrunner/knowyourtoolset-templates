@@ -1,0 +1,13 @@
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.dbmdl
+*.jfm
+*.cache
+*.props
+
+**/.vs/
+**/bin/
+**/obj/
+*.nupkg
