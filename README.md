@@ -1,5 +1,8 @@
 # KnowYourToolset.Templates
-[![NuGet Publish](https://github.com/dahlsailrunner/knowyourtoolset-templates/actions/workflows/pack-and-publish-templates.yml/badge.svg)](https://github.com/dahlsailrunner/knowyourtoolset-templates/actions/workflows/pack-and-publish-templates.yml)
+
+_[![NuGet version](https://img.shields.io/nuget/v/KnowYourToolset.Templates.svg?style=flat&label=nuget%3A%20KnowYourToolset.Templates)](https://www.nuget.org/packages/KnowYourToolset.Templates)_
+
+[![GitHub Action](https://github.com/dahlsailrunner/knowyourtoolset-templates/actions/workflows/pack-and-publish-templates.yml/badge.svg)](https://github.com/dahlsailrunner/knowyourtoolset-templates/actions/workflows/pack-and-publish-templates.yml)
 
 Install (see below for more information): `dotnet new -i KnowYourToolset.Templates`  
 
