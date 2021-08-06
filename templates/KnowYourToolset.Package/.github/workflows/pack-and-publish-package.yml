@@ -9,6 +9,8 @@ on:
     branches: [ main ]
     paths-ignore:
       - '**/README.md'
+  release:
+    types: [published]
 
 jobs:
   build:

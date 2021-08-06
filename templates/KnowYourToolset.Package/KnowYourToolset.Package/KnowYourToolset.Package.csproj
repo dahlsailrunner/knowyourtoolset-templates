@@ -9,7 +9,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReference Include="Serilog" Version="2.10.0" />
+  </ItemGroup>
+
+
+ <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\"/> 
   </ItemGroup>
 
 </Project>
