@@ -17,16 +17,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with: 
+        fetch-depth: 0
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore    
+        dotnet-version: 5.0.x   
+
+    - name: Create package
+      run: dotnet pack **/*.csproj -o .
+    
     - name: Publish NuGet
-      uses: brandedoutcast/publish-nuget@v2.5.5
-      with:        
-        PROJECT_FILE_PATH: KnowYourToolset.Package/KnowYourToolset.Package.csproj 
-        NUGET_KEY: ${{ secrets.NUGET_API_KEY }}            
+      run: dotnet nuget push *.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json            

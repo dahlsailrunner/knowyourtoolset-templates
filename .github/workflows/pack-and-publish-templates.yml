@@ -12,7 +12,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -21,13 +20,9 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore    
+
+    - name: Create package
+      run: dotnet pack -o .
+    
     - name: Publish NuGet
-      uses: brandedoutcast/publish-nuget@v2.5.5
-      with:        
-        PROJECT_FILE_PATH: KnowYourToolset.Templates.csproj 
-        NUGET_KEY: ${{ secrets.NUGET_API_KEY }}    
-        VERSION_REGEX: <PackageVersion>(.*)<\/PackageVersion>
+      run: dotnet nuget push *.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json            
