@@ -1,4 +1,5 @@
 # KnowYourToolset.Templates
+![Nuget publish](https://github.com/dahlsailrunner/knowyourtoolset-templates/actions/workflows/pack-and-publish-templates/badge.svg)
 
 Install (see below for more information): `dotnet new -i KnowYourToolset.Templates`  
 
