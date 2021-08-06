@@ -2,11 +2,15 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>0.0.2</PackageVersion>
+    <PackageVersion>0.0.3</PackageVersion>
     <PackageId>KnowYourToolset.Templates</PackageId>
     <Title>KnowYourToolset Templates</Title>
     <Authors>Erik Dahl</Authors>
     <PackageLicenseExpression>MS-PL</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/dahlsailrunner/knowyourtoolset-templates</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/dahlsailrunner/knowyourtoolset-templates</RepositoryUrl>
+    <PackageIconUrl>https://knowyourtoolset.com/wp-content/uploads/2015/03/cropped-favicon-96x96.png</PackageIconUrl>
+    <RepositoryType>git</RepositoryType>
     <Description>
 Sample .NET templates that demonstrate useful templating features.
 
