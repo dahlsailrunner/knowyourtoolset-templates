@@ -6,7 +6,7 @@
     <PackageId>KnowYourToolset.Templates</PackageId>
     <Title>KnowYourToolset Templates</Title>
     <Authors>Erik Dahl</Authors>
-    <License type="file">license.txt</License>
+    <PackageLicenseExpression>MS-PL</PackageLicenseExpression>
     <Description>
 Sample .NET templates that demonstrate useful templating features.
 
