@@ -1,4 +1,4 @@
-name: .NET
+name: NuGet Pack and Publish
 
 on:
   push:
