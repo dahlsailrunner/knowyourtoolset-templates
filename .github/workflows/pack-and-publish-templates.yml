@@ -26,3 +26,4 @@ jobs:
       with:        
         PROJECT_FILE_PATH: KnowYourToolset.Templates.csproj 
         NUGET_KEY: oy2o5kdgdbvits4ybn7ar7f3ywe3bjtelaa7o6vgkwscbq    
+        VERSION_REGEX: <PackageVersion>(.*)<\/PackageVersion>
