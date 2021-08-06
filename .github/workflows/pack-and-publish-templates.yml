@@ -25,5 +25,5 @@ jobs:
       uses: brandedoutcast/publish-nuget@v2.5.5
       with:        
         PROJECT_FILE_PATH: KnowYourToolset.Templates.csproj 
-        NUGET_KEY: oy2o5kdgdbvits4ybn7ar7f3ywe3bjtelaa7o6vgkwscbq    
+        NUGET_KEY: $ {{ secrets.NUGET_API_KEY }}    
         VERSION_REGEX: <PackageVersion>(.*)<\/PackageVersion>
