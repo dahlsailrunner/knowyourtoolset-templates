@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 using Serilog;
 
 namespace KnowYourToolset.BackEnd.Api
-{
+{    
     public class Program
     {
         public static void Main(string[] args)
@@ -31,13 +31,14 @@ namespace KnowYourToolset.BackEnd.Api
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .UseSerilog((context, services, configuration) => configuration
+                .UseSerilog((context, services, configuration) => { configuration
                     .ReadFrom.Configuration(context.Configuration)
                     .ReadFrom.Services(services)
                     .Enrich.FromLogContext()
                     .Enrich.WithProperty("Application", "KnowYourToolset_BackEnd.Api") // or entry assembly name
                     .WriteTo.Console()
-                    .WriteTo.Seq("http://localhost:5341")) 
+                    //.WriteTo.Seq("http://host.docker.internal:5341"))  // comment this IN if using docker
+                    .WriteTo.Seq("http://localhost:5341"))  // comment this OUT if using using docker
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
