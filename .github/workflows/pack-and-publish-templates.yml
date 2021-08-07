@@ -16,13 +16,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+
+    - uses: NuGet/setup-nuget@v1.0.5
       with:
-        dotnet-version: 5.0.x
+        nuget-api-key: ${{ secrets.NUGET_API_KEY }}  
 
     - name: Create package
-      run: dotnet pack -o .
+      run: nuget pack KnowYourToolset.Templates.nuspec -NoDefaultExcludes
     
     - name: Publish NuGet
-      run: dotnet nuget push *.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json            
+      run: nuget push ./*.nupkg          

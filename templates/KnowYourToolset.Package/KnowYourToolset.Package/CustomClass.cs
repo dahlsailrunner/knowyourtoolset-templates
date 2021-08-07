@@ -12,7 +12,7 @@ namespace KnowYourToolset.Package
         //  Tags: add any you think might be worthwhile
         public static void SayHello(string greeting)
         {
-            Log.Information(greeting);
+            Log.Information("Passed greeting was {greeting}", greeting);
         }
     }
 }

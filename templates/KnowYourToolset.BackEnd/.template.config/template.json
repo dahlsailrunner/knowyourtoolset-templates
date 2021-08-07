@@ -1,0 +1,56 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Erik Dahl",
+  "classifications": [ "RealPage API" ],
+  "tags": { "language": "C#"},
+  "identity": "RealPage.BackEnd",
+  "name": "RealPage Multi-project API: API, Repository, Logic, Core, and Tests",
+  "shortName": "rp-apistack",
+  "sourceName": "Project.Name",
+  "preferNameDirectory": true,
+  "guids": [ "257177d6-4bb4-4a85-b910-285591ee972b" ],
+  "symbols": {
+    "DockerSupport": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false" 
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "(!DockerSupport)",
+          "exclude": [
+            "**/Dockerfile",
+            "**/.dockerignore",
+            "**/k8s/**",
+            "**/ci-build-containers.yml"
+          ]
+        },
+        {
+          "condition": "(DockerSupport)",
+          "exclude": [            
+            "**/ci-build-sc-win64.yml"
+          ]
+        }
+      ]
+    }
+  ],
+  "SpecialCustomOperations": {
+    "**.csproj": {
+      "operations": [
+        {
+          "type": "conditional",
+          "configuration": {
+            "if": [ "<!--#if" ],
+            "endif": [ "<!--#endif" ],
+            "wholeLine": true,
+            "evaluator": "C++"
+          }
+        }
+      ]
+    }
+  }
+} 
+  

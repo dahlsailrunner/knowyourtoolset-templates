@@ -18,7 +18,7 @@ Make sure to also include package details in the csproj file (Package tab of Pro
 - [ ] `Project URL`: Link to your repo - should show readme
 - [ ] `Repository URL`: Project repo root URL
 - [ ] `PackageLicenseExpression`: Set the license if you are publishing this publicly
-- [ ] `Icon`: include an image if you have one as a logo
+- [ ] `Icon`: update the icon file to be your own (128x128 png or jpg)
 - [ ] `Tags`: add any you think might be worthwhile
 
 ## Publishing the package

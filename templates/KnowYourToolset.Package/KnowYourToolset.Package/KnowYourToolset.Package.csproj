@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
+     <PackageReadme>README.md</PackageReadme>
+     <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,13 +11,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReference Include="Serilog" Version="2.10.0" />
   </ItemGroup>
 
-
   <ItemGroup>
     <None Include="..\README.md" Pack="true" PackagePath="\"/> 
+    <None Include="icon.png" Pack="true" PackagePath="\"/> 
   </ItemGroup>
 
 </Project>

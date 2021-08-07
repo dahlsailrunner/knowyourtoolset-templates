@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>0.1.0</PackageVersion>
+    <PackageVersion>0.1.1</PackageVersion>
     <PackageId>KnowYourToolset.Templates</PackageId>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Title>KnowYourToolset Templates</Title>
@@ -10,7 +10,7 @@
     <PackageLicenseExpression>MS-PL</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/dahlsailrunner/knowyourtoolset-templates</PackageProjectUrl>
     <RepositoryUrl>https://github.com/dahlsailrunner/knowyourtoolset-templates</RepositoryUrl>
-    <PackageIconUrl>https://knowyourtoolset.com/wp-content/uploads/2015/03/cropped-favicon-96x96.png</PackageIconUrl>
+    <PackageIcon>icon.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
     <Description>
 Sample .NET templates that demonstrate useful templating features.
@@ -31,7 +31,9 @@ https://github.com/dahlsailrunner/knowyourtoolset-templates
 
   <ItemGroup>
     <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" /> 
-    <None Include="README.md" Pack="true" PackagePath="\"/> 
+    <None Include="README.md" Pack="true" PackagePath="\"/>
+    <None Include="icon.png" Pack="true" PackagePath="\"/>
+    <None Include="templates\**\.gitignore" Pack="true"/> 
 	  <Compile Remove="**\*" />	
   </ItemGroup>
 
