@@ -1,4 +1,11 @@
 # KnowYourToolset.BackEnd - Overview and Instructions
+**PREREQUISITE:** [Seq]() is used as a destination to write log entries in addition to the Console -- they are much easier to read and explore via Seq.
+
+The easiest way to run Seq locally is to run it as a Docker container:
+```
+docker pull datalust/seq
+docker run -d --name seq -e ACCEPT_EULA=Y -p 5341:80 datalust/seq:latest
+```
 
 This solution was generated from an ASP.NET Core WebAPI template that comes with a bundle of features:
 - Semantic Versioning for the API via the URL Path
@@ -10,7 +17,6 @@ This solution was generated from an ASP.NET Core WebAPI template that comes with
 - Unit tests for business logic
 
 ## In The Box
-
 ### Api
 The main API project. It uses the following NuGet packages:
 - [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) to provide Swagger documents.
@@ -22,9 +28,6 @@ This API includes error handling by default that will log exceptions with full d
 
 ## Solution Structure 
 All of the "concerns" below are contained in their own folders.  
-
-### API 
-This is the project that contains the API being developed.
 
 ### Business Logic
 This code represents the real logic of the application and some scaffolded code is included here as an example.  You would replace this code with your own logic and classes, but you can follow the examples if you need to understand how all of the pieces fit together.
@@ -38,7 +41,7 @@ This test project is intended to be used to test as much of the **business logic
 There are some working unit tests written already against the sample business logic.  As you write your own business logic -- or maybe even **before** you write it, you should write unit tests following similar patterns.
 
 ## Configuration
-The primary settings for the API are defined in the `appSettings.json` file -- and there aren't different versions of this file to support different environments.  Different values for other environments are provided in release definitions (see **Continuous Delivery** below).
+The primary settings for the API are defined in the `appsettings.json` file -- and there aren't different versions of this file to support different environments.  Different values for other environments are provided in release definitions (see **Continuous Delivery** below).
 
 Name | Purpose | Sample value
 --- | --- | ---

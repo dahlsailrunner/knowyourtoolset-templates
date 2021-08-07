@@ -14,6 +14,7 @@ This package and repo contains sample .NET templates that can help jump-start .N
 Included templates:
 * `kyt-package`: Creates a .NET Standard class library with [MinVer](https://github.com/adamralph/minver) and [Serilog](https://github.com/serilog/serilog) added and includes a GitHub action 
 that publishes the package to NuGet (assuming you create a secret with your NuGet API Key).
+* `kyt-backend`: Creates a multi-project solution for an API.  Includes a separate project for "business logic" and also includes a unit test project.
 
 ## Use cases
 These templates can be modified to include YOUR best practices and cross-cutting concerns.  Just fork the repo 
@@ -66,6 +67,17 @@ I created a sample instance with the following command:
 `dotnet new kyt-package -o KnowYourToolset.SamplePackage`
 
 The repo is here (and it has a pre-release version and a formal `1.0.0` version published for you to see): https://github.com/dahlsailrunner/knowyourtoolset-samplepackage
+
+### **dotnet new kyt-backend**
+This template creates a multi-project .NET solution for an API that includes business logic and unit tests.
+
+`dotnet new kyt-backend -o <projname>`
+
+Check out the Readme and Instructions documents in that folder (for your generated project) for more details about this template.
+
+A sample you might create:
+
+`dotnet new kyt-backend -o BookClub`
 
 ## Things to try 
 Check the `Instructions.md` file for some simple things to try and more detailed guidance on introducing 
