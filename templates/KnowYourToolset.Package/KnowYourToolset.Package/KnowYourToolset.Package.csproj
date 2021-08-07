@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-     <PackageReadme>README.md</PackageReadme>
+     <PackageReadmeFile>README.md</PackageReadmeFile>
      <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
 

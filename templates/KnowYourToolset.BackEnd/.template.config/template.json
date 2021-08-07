@@ -1,14 +1,14 @@
 ﻿{
   "$schema": "http://json.schemastore.org/template",
   "author": "Erik Dahl",
-  "classifications": [ "RealPage API" ],
+  "classifications": [ "KnowYourToolset API" ],
   "tags": { "language": "C#"},
-  "identity": "RealPage.BackEnd",
-  "name": "RealPage Multi-project API: API, Repository, Logic, Core, and Tests",
-  "shortName": "rp-apistack",
-  "sourceName": "Project.Name",
+  "identity": "KnowYourToolset.BackEnd",
+  "name": "Multi-project API: API, Repository, Logic, Core, and Tests",
+  "shortName": "kyt-backend",
+  "sourceName": "KnowYourToolset.BackEnd",
   "preferNameDirectory": true,
-  "guids": [ "257177d6-4bb4-4a85-b910-285591ee972b" ],
+  "guids": [ "f4850358-2d63-41fe-8bb9-e03d0fc6f2ed" ],
   "symbols": {
     "DockerSupport": {
       "type": "parameter",
@@ -23,15 +23,13 @@
           "condition": "(!DockerSupport)",
           "exclude": [
             "**/Dockerfile",
-            "**/.dockerignore",
-            "**/k8s/**",
-            "**/ci-build-containers.yml"
+            "**/.dockerignore"            
           ]
         },
         {
           "condition": "(DockerSupport)",
           "exclude": [            
-            "**/ci-build-sc-win64.yml"
+            
           ]
         }
       ]

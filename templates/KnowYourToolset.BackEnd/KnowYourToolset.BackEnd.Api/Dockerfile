@@ -7,16 +7,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["KnowYourToolset.Api.Api/KnowYourToolset.Api.Api.csproj", "KnowYourToolset.Api.Api/"]
+COPY ["KnowYourToolset.BackEnd.Api/KnowYourToolset.BackEnd.Api.csproj", "KnowYourToolset.BackEnd.Api/"]
 RUN dotnet restore "KnowYourToolset.Api.Api/KnowYourToolset.Api.csproj"
 COPY . .
-WORKDIR "/src/KnowYourToolset.Api.Api"
-RUN dotnet build "KnowYourToolset.Api.csproj" -c Release -o /app/build
+WORKDIR "/src/KnowYourToolset.BackEnd.Api"
+RUN dotnet build "KnowYourToolset.BackEnd.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "KnowYourToolset.Api.csproj" -c Release -o /app/publish
+RUN dotnet publish "KnowYourToolset.BackEnd.Api.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "KnowYourToolset.Api.dll"]
+ENTRYPOINT ["dotnet", "KnowYourToolset.BackEnd.Api.dll"]

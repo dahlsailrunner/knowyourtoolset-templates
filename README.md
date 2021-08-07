@@ -4,7 +4,10 @@ _[![NuGet version](https://img.shields.io/nuget/v/KnowYourToolset.Templates.svg?
 
 [![GitHub Action](https://github.com/dahlsailrunner/knowyourtoolset-templates/actions/workflows/pack-and-publish-templates.yml/badge.svg)](https://github.com/dahlsailrunner/knowyourtoolset-templates/actions/workflows/pack-and-publish-templates.yml)
 
-Install (see below for more information): `dotnet new -i KnowYourToolset.Templates`  
+This is a "template pack" that uses the .NET templating engine.  It has example templates that can be used as starting points that may be helpful to you 
+or could be extended to be your own templates.
+
+To install (see below for more information): `dotnet new -i KnowYourToolset.Templates`  
 
 This package and repo contains sample .NET templates that can help jump-start .NET development efforts.
 

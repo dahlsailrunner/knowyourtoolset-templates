@@ -1,6 +1,6 @@
 using System;
 
-namespace KnowYourToolset.Api.Api
+namespace KnowYourToolset.BackEnd.Api
 {
     public class WeatherForecast
     {
@@ -11,5 +11,7 @@ namespace KnowYourToolset.Api.Api
         public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 
         public string Summary { get; set; }
+
+        public string City { get; set; }
     }
 }
