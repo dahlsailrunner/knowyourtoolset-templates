@@ -25,4 +25,4 @@ jobs:
       run: nuget pack KnowYourToolset.Templates.nuspec -NoDefaultExcludes
     
     - name: Publish NuGet
-      run: nuget push **/*.nupkg          
+      run: nuget push *.nupkg          
