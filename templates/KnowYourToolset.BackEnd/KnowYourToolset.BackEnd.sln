@@ -5,11 +5,17 @@ VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KnowYourToolset.BackEnd.Api", "KnowYourToolset.BackEnd.Api\KnowYourToolset.BackEnd.Api.csproj", "{DC924FBD-E9E5-4472-A2AA-EA118A3A6B15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowYourToolset.BackEnd.Logic", "KnowYourToolset.BackEnd.Logic\KnowYourToolset.BackEnd.Logic.csproj", "{E4D5D207-A4F7-48B9-A0AD-8CB50E55EAF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KnowYourToolset.BackEnd.Logic", "KnowYourToolset.BackEnd.Logic\KnowYourToolset.BackEnd.Logic.csproj", "{E4D5D207-A4F7-48B9-A0AD-8CB50E55EAF8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F7E6C359-75B5-4E0B-85BE-CA3AB77B136C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowYourToolset.BackEnd.LogicTests", "tests\KnowYourToolset.BackEnd.LogicTests\KnowYourToolset.BackEnd.LogicTests.csproj", "{3E725541-4741-4122-990C-5D5DF59B553E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KnowYourToolset.BackEnd.LogicTests", "tests\KnowYourToolset.BackEnd.LogicTests\KnowYourToolset.BackEnd.LogicTests.csproj", "{3E725541-4741-4122-990C-5D5DF59B553E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{82339462-AF97-44EC-9E16-B273770708F0}"
+	ProjectSection(SolutionItems) = preProject
+		Instructions.md = Instructions.md
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
