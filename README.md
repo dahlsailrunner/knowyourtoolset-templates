@@ -71,7 +71,8 @@ The repo is here (and it has a pre-release version and a formal `1.0.0` version 
 ### **dotnet new kyt-backend**
 This template creates a multi-project .NET solution for an API that includes business logic and unit tests.
 
-`dotnet new kyt-backend -o <projname>`
+`dotnet new kyt-backend -o <projname>`  (no Docker support included)
+`dotnet new kyt-backend -D <projname>` (includes Docker support - .dockerignore and Dockerfiles, and Kubernetes manifests are *planned*).
 
 Check out the Readme and Instructions documents in that folder (for your generated project) for more details about this template.
 
