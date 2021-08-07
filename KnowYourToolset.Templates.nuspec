@@ -12,7 +12,7 @@ See the **readme** on the project site for more information.
 https://github.com/dahlsailrunner/knowyourtoolset-templates      
     </description>
     <license type="expression">MS-PL</license>
-    <readme>readme.md</readme>
+    <readme>README.md</readme>
     <projectUrl>https://github.com/dahlsailrunner/knowyourtoolset-templates</projectUrl>    
     <title>KnowYourToolset Templates</title>
     <icon>icon.png</icon>
