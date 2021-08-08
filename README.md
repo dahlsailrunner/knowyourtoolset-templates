@@ -64,9 +64,9 @@ Check out the Readme and Instructions documents in that folder (for your generat
 
 I created a sample instance with the following command:
 
-`dotnet new kyt-package -o KnowYourToolset.SamplePackage`
+`dotnet new kyt-package -o KnowYourToolset.ApiComponents`
 
-The repo is here (and it has a pre-release version and a formal `1.0.0` version published for you to see): https://github.com/dahlsailrunner/knowyourtoolset-samplepackage
+The repo is here (and it has a pre-release version and a formal `1.0.1` version published for you to see): https://github.com/dahlsailrunner/knowyourtoolset-apicomponents
 
 ### **dotnet new kyt-backend**
 This template creates a multi-project .NET solution for an API that includes business logic and unit tests.
