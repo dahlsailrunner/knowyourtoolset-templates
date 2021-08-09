@@ -18,7 +18,7 @@ that publishes the package to NuGet (assuming you create a secret with your NuGe
 
 ## Use cases
 These templates can be modified to include YOUR best practices and cross-cutting concerns.  Just fork the repo 
-and make them your own!  :)  See [this blog post]() for more details on why and how you can do this.
+and make them your own!  :)  See [this blog post](https://knowyourtoolset.com/2021/08/creating-useful-net-templates/) for more details on why and how you can do this.
 
 Primary use-cases for these templates:
 
