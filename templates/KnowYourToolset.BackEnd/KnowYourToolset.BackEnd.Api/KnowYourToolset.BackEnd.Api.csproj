@@ -12,7 +12,7 @@
     <!--#if (DockerSupport)  -->
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.14" />
     <!--#endif -->
-    <PackageReference Include="KnowYourToolset.ApiComponents" Version="1.0.1" />
+    <PackageReference Include="KnowYourToolset.ApiComponents" Version="1.0.2" />
     <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
     <PackageReference Include="Serilog.Sinks.Seq" Version="5.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.5" />
