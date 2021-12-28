@@ -37,6 +37,70 @@
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "type": "docker-build",
+            "label": "docker-build: debug",
+            "dependsOn": [
+                "build"
+            ],
+            "dockerBuild": {
+                "tag": "knowyourtoolsetbackend:dev",
+                "target": "base",
+                "dockerfile": "${workspaceFolder}/KnowYourToolset.BackEnd.Api/Dockerfile",
+                "context": "${workspaceFolder}",
+                "pull": true
+            },
+            "netCore": {
+                "appProject": "${workspaceFolder}/KnowYourToolset.BackEnd.Api/KnowYourToolset.BackEnd.Api.csproj"
+            }
+        },
+        {
+            "type": "docker-build",
+            "label": "docker-build: release",
+            "dependsOn": [
+                "build"
+            ],
+            "dockerBuild": {
+                "tag": "knowyourtoolsetbackend:latest",
+                "dockerfile": "${workspaceFolder}/KnowYourToolset.BackEnd.Api/Dockerfile",
+                "context": "${workspaceFolder}",
+                "pull": true
+            },
+            "netCore": {
+                "appProject": "${workspaceFolder}/KnowYourToolset.BackEnd.Api/KnowYourToolset.BackEnd.Api.csproj"
+            }
+        },
+        {
+            "type": "docker-run",
+            "label": "docker-run: debug",
+            "dependsOn": [
+                "docker-build: debug"
+            ],
+            "dockerRun": {
+                "env": {
+                    "ASPNETCORE_ENVIRONMENT": "Development",
+                    "ASPNETCORE_URLS": "http://*:5000"
+                },
+                "ports": [
+                    { "hostPort": 49154, "containerPort": 5000 }
+                ]
+            },
+            "netCore": {
+                "appProject": "${workspaceFolder}/KnowYourToolset.BackEnd.Api/KnowYourToolset.BackEnd.Api.csproj",
+                "enableDebugging": true
+            }
+        },
+        {
+            "type": "docker-run",
+            "label": "docker-run: release",
+            "dependsOn": [
+                "docker-build: release"
+            ],
+            "dockerRun": {},
+            "netCore": {
+                "appProject": "${workspaceFolder}/KnowYourToolset.BackEnd.Api/KnowYourToolset.BackEnd.Api.csproj"
+            }
         }
     ]
 }

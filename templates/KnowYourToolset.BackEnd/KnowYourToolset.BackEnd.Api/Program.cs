@@ -53,7 +53,7 @@ try
             .Enrich.FromLogContext()
             .Enrich.WithProperty("Application", "KnowYourToolset_BackEnd.Api") // or entry assembly name
             .WriteTo.Console()
-            //.WriteTo.Seq("http://host.docker.internal:5341"))  // comment this IN if using docker
+            //.WriteTo.Seq("http://host.docker.internal:5341");  // comment this IN if using docker
             .WriteTo.Seq("http://localhost:5341");       // comment this OUT if using using docker);
     }));
 
