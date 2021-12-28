@@ -1,0 +1,45 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET Core Launch (web)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/KnowYourToolset.BackEnd.Api/bin/Debug/net6.0/KnowYourToolset.BackEnd.Api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/KnowYourToolset.BackEnd.Api",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        },
+        {
+            "name": "Docker .NET Core Launch",
+            "type": "docker",
+            "request": "launch",
+            "preLaunchTask": "docker-run: debug",
+            "netCore": {
+                "appProject": "${workspaceFolder}/KnowYourToolset.BackEnd.Api/KnowYourToolset.BackEnd.Api.csproj"
+            },
+            "dockerServerReadyAction": {
+                "uriFormat": "http://localhost:49154",
+                "action": "openExternally",
+                "pattern": "listening on:.*http://.*:.*",
+                "containerName": "knowyourtoolsetbackend:dev"
+            }
+        }
+    ]
+}
