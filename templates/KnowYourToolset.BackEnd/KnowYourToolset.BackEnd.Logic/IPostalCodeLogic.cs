@@ -1,7 +1,6 @@
-﻿namespace KnowYourToolset.BackEnd.Logic
+﻿namespace KnowYourToolset.BackEnd.Logic;
+
+public interface IPostalCodeLogic
 {
-    public interface IPostalCodeLogic
-    {
-        string GetCityForPostalCode(string postalCode);
-    }
+    string GetCityForPostalCode(string postalCode);
 }
