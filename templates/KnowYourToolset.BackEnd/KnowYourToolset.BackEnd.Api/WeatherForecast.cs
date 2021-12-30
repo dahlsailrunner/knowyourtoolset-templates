@@ -1,5 +1,3 @@
-using System;
-
 namespace KnowYourToolset.BackEnd.Api
 {
     public class WeatherForecast
