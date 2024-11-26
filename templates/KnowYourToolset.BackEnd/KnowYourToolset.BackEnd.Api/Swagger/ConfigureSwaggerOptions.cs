@@ -1,32 +1,26 @@
-﻿using IdentityModel.Client;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
+﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace KnowYourToolset.BackEnd.Api.Swagger;
 
-public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
+public class ConfigureSwaggerOptions(IConfiguration config, IApiVersionDescriptionProvider provider) 
+    : IConfigureOptions<SwaggerGenOptions>
 {
-    private readonly IConfiguration _config;
-    private readonly IApiVersionDescriptionProvider _provider;
-
-    public ConfigureSwaggerOptions(IConfiguration config, IApiVersionDescriptionProvider provider)
-    {
-        _config = config;
-        _provider = provider;
-    }
-
     public void Configure(SwaggerGenOptions options)
     {
-        var disco = GetDiscoveryDocument();
+        var authority = config.GetValue<string>("Authentication:Authority");
 
-        var apiScope = _config.GetValue<string>("Authentication:ApiName");
-        var scopes = apiScope.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+        var apiScope = config.GetValue<string>("Authentication:ApiName");
+        var scopes = apiScope!.Split([' '], StringSplitOptions.RemoveEmptyEntries).ToList();
 
-        var addScopes = _config.GetValue<string>("Authentication:AdditionalScopes");
-        var additionalScopes = addScopes.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-        scopes.AddRange(additionalScopes);
+        var addScopes = config.GetValue<string>("Authentication:AdditionalScopes");
+        if (!string.IsNullOrEmpty(addScopes))
+        {
+            var additionalScopes = addScopes.Split([' '], StringSplitOptions.RemoveEmptyEntries).ToList();
+            scopes.AddRange(additionalScopes);
+        }
 
         var oauthScopeDic = new Dictionary<string, string>();
         foreach (var scope in scopes)
@@ -34,7 +28,7 @@ public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
             oauthScopeDic.Add(scope, $"Resource access: {scope}");
         }
 
-        foreach (var description in _provider.ApiVersionDescriptions)
+        foreach (var description in provider.ApiVersionDescriptions)
         {
             options.SwaggerDoc(
                 description.GroupName,
@@ -54,8 +48,8 @@ public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
             {
                 AuthorizationCode = new OpenApiOAuthFlow
                 {
-                    AuthorizationUrl = new Uri(disco.AuthorizeEndpoint),
-                    TokenUrl = new Uri(disco.TokenEndpoint),
+                    AuthorizationUrl = new Uri($"{authority}/connect/authorize"),
+                    TokenUrl = new Uri($"{authority}/connect/token"),
                     Scopes = oauthScopeDic
                 }
             }
@@ -70,14 +64,5 @@ public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
                 oauthScopeDic.Keys.ToArray()
             }
         });
-    }
-
-    private DiscoveryDocumentResponse GetDiscoveryDocument()
-    {
-        var client = new HttpClient();
-        var authority = _config.GetValue<string>("Authentication:Authority");
-        return client.GetDiscoveryDocumentAsync(authority)
-            .GetAwaiter()
-            .GetResult();
     }
 }

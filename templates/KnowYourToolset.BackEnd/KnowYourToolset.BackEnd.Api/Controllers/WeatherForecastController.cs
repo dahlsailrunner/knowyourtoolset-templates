@@ -1,29 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using KnowYourToolset.BackEnd.Logic;
+using KnowYourToolset.BackEnd.Api.BusinessLogic;
 
 namespace KnowYourToolset.BackEnd.Api.Controllers;
 
 [ApiController]
 [ApiVersion("1.0")]
 [Route("v{version:apiVersion}/[controller]")]
-public class WeatherForecastController : ControllerBase
+public class WeatherForecastController(IPostalCodeLogic postalCodeLogic) : ControllerBase
 {
-    private readonly IPostalCodeLogic _postalCodeLogic;
-
     private static readonly string[] Summaries =
     {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
 
-    public WeatherForecastController(IPostalCodeLogic postalCodeLogic)
-    {
-        _postalCodeLogic = postalCodeLogic;
-    }
-
     [HttpGet]
     public IEnumerable<WeatherForecast> Get(string postalCode)
     {
-        var cityName = _postalCodeLogic.GetCityForPostalCode(postalCode);
+        var cityName = postalCodeLogic.GetCityForPostalCode(postalCode);
 
         var rng = new Random();
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast

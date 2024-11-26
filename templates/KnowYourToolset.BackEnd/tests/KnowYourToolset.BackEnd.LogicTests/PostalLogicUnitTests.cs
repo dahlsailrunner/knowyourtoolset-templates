@@ -1,5 +1,7 @@
 using FluentAssertions;
-using KnowYourToolset.BackEnd.Logic;
+using KnowYourToolset.BackEnd.Api.BusinessLogic;
+using Microsoft.Extensions.Logging;
+using Moq;
 using Xunit;
 
 namespace KnowYourToolset.BackEnd.LogicTests;
@@ -10,9 +12,9 @@ public class PostalLogicUnitTests
 
     public PostalLogicUnitTests()
     {
-
         // NOTE: if the logic object below has dependencies for its constructor you would use the Moq library to set them up.
-        _logic = new PostalCodeLogic();
+        var mockLogger = new Mock<ILogger<PostalCodeLogic>>();
+        _logic = new PostalCodeLogic(mockLogger.Object);
     }
 
     [Fact]

@@ -15,8 +15,8 @@ Included templates:
 
 * `kyt-package`: Creates a .NET Standard class library with [MinVer](https://github.com/adamralph/minver) and [Serilog](https://github.com/serilog/serilog) added and includes a GitHub action
 that publishes the package to NuGet (assuming you create a secret with your NuGet API Key).
-* `kyt-backend`: Creates a multi-project solution for an API.  Includes a separate project for "business logic" and also includes a unit test project.  *Runnable out
-of the box from [Visual Studio](https://visualstudio.microsoft.com/), [Rider](https://www.jetbrains.com/rider/), and [VS Code](https://code.visualstudio.com/)!!*
+* `kyt-backend`: Creates a multi-project solution for an API.  Includes a separate project for "business logic" and also includes a unit test project.  _Runnable out
+of the box from [Visual Studio](https://visualstudio.microsoft.com/), [Rider](https://www.jetbrains.com/rider/), and [VS Code](https://code.visualstudio.com/)!!_
 
 ## Use cases
 
@@ -84,7 +84,7 @@ This template creates a multi-project .NET solution for an API that includes bus
 
 `dotnet new kyt-backend -o <projname>`  (no Docker support included)
 
-`dotnet new kyt-backend -D -o <projname>` (includes Docker support - .dockerignore and Dockerfiles, and Kubernetes manifests are *planned*).
+`dotnet new kyt-backend -D -o <projname>` (includes Docker support - .dockerignore and Dockerfiles, and Kubernetes manifests are _planned_).
 
 Check out the Readme and Instructions documents in that folder (for your generated project) for more details about this template.
 
@@ -109,10 +109,72 @@ So if you open a "Task View" in Visual Studio you should be able to see the shor
 
 If you'd like to add more templates or update the existing ones:
 
-* fork the repo
-* branch it
-* make your changes, update the semantic version of the `.nuspec` file, and update the readme and other applicable docs
-* commit and publish your new branch (to your fork)
-* submit a pull request
+* Clone the repo
+* Branch it
+* Make your changes and test them (see below)
+* Update the semantic version of the `.nuspec` file, and update [ReleaseNotes.md](./ReleaseNotes.md)
+* Commit and publish your new branch
+* Submit a pull request
 
 Upon completion of the pull request, a new version of the package will be published.
+
+### Key Concepts and Files
+
+Here are some links for reference:
+
+* [Custom Templates Overview](https://learn.microsoft.com/en-us/dotnet/core/tools/custom-templates)
+* [Templating wiki reference](https://github.com/dotnet/templating/wiki)
+
+The thing turns the different folders into actual templates
+is the `.template.config/template.json` file in each of the
+top-level subfolders.  Each of the different `template.json`
+files defines the parameters for that template and its
+various options.
+
+There is also _**some**_ conditional processing for the templates,
+and that is either defined directly in the `template.json` files -
+for example when an entire file or directory should be excluded
+based on options - or by `#if` conditionals in the code files
+themselves based on conditions in the template.
+
+An example of a `#if` evaluation is the `POSTGRESQL` conditional
+in the API project.
+
+### Testing Changes to Templates
+
+First off, you should be able to run any of the templates if
+you open the appropriate folder / solution inside your favorite IDE.
+
+For the new API templates, they support different databases, and the way to "pick" the database is
+to define one of the following constants in the `.csproj` files for the AppHost and the API:
+
+* `SQLITE`
+* `POSTGRESQL`
+* `MSSQL`
+
+To try the templates as they would be experienced by users of the templates, use the following commands
+in sequence:
+
+```bash
+dotnet new uninstall KnowYourToolset.Templates
+RemoveBinObjDirs ## see note below
+nuget pack -NoDefaultExcludes
+dotnet new install ./KnowYourToolset.Templates.<version>.nupkg
+```
+
+> **N O T E:** When packaging the templates, ALL files in the directory where the current template
+> exists will be included. It's best to NOT include `bin`, `obj`, and `node_modules` folders, so
+> the following handy PowerShell funciton will remove all of those folders from any subdirectories if you
+> run it from the root folder of the templates:
+>
+> ```posh
+> function RemoveBinObjDirs 
+> {
+>    gci -include bin,obj,node_modules -recurse | remove-item -force -recurse
+> }
+> ```
+>
+
+The version number should be part of the output of the
+`nuget pack` command - and the `.nupkg` file will be in the
+root directory of the templates.
