@@ -16,7 +16,7 @@ builder.Services.AddLogic()// defined in StartupServices folder
     .AddHttpContextAccessor();
 
 builder.Services
-    .AddMvcCore(options => options.AddBaseAuthorizationFilters()) 
+    .AddMvcCore(options => options.AddBaseAuthorizationFilters())
     .AddApiExplorer();
 
 JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
@@ -34,11 +34,12 @@ var apiVersionProvider = app.Services.GetRequiredService<IApiVersionDescriptionP
 app.UseSwaggerFeatures(builder.Configuration, apiVersionProvider, app.Environment);
 
 app.MapDefaultEndpoints();
-app
+
+app.UseRouting()
     .UseAuthentication()
-    .UseRouting()
-    .UseAuthorization()
     .UseMiddleware<UserScopeMiddleware>()
+    .UseExceptionHandler() // by putting here we can capture the logged in user in log entry
+    .UseAuthorization()
     .UseEndpoints(endpoints =>
     {
         endpoints.MapControllers();

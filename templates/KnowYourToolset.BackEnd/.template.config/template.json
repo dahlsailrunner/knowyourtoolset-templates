@@ -1,19 +1,22 @@
 ﻿{
   "$schema": "http://json.schemastore.org/template",
   "author": "Erik Dahl",
-  "classifications": [ "KnowYourToolset API" ],
-  "tags": { "language": "C#"},
+  "classifications": ["KnowYourToolset Aspire"],
+  "tags": {
+    "language": "C#",
+    "type": "solution"
+  },
   "identity": "KnowYourToolset.BackEnd",
-  "name": "Multi-project API: API, Logic, and Tests",
-  "shortName": "kyt-backend",
+  "name": "Aspire-based solution with API, Database, Tests, and optional UI with BFF",
+  "shortName": "kyt-aspire",
   "sourceName": "KnowYourToolset.BackEnd",
   "preferNameDirectory": true,
-  "guids": [ "f4850358-2d63-41fe-8bb9-e03d0fc6f2ed" ],
+  "guids": ["f4850358-2d63-41fe-8bb9-e03d0fc6f2ed"],
   "symbols": {
     "DockerSupport": {
       "type": "parameter",
       "datatype": "bool",
-      "defaultValue": "false" 
+      "defaultValue": "false"
     }
   },
   "sources": [
@@ -21,34 +24,13 @@
       "modifiers": [
         {
           "condition": "(!DockerSupport)",
-          "exclude": [
-            "**/Dockerfile",
-            "**/.dockerignore"            
-          ]
+          "exclude": ["**/Dockerfile", "**/.dockerignore"]
         },
         {
           "condition": "(DockerSupport)",
-          "exclude": [            
-            
-          ]
+          "exclude": []
         }
       ]
     }
-  ],
-  "SpecialCustomOperations": {
-    "**.csproj": {
-      "operations": [
-        {
-          "type": "conditional",
-          "configuration": {
-            "if": [ "<!--#if" ],
-            "endif": [ "<!--#endif" ],
-            "wholeLine": true,
-            "evaluator": "C++"
-          }
-        }
-      ]
-    }
-  }
-} 
-  
+  ]
+}

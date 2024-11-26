@@ -2,17 +2,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": ".NET Core Launch (web)",
+            "name": "Aspire Launch",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/KnowYourToolset.BackEnd.Api/bin/Debug/net6.0/KnowYourToolset.BackEnd.Api.dll",
+            "program": "${workspaceFolder}/KnowYourToolset.BackEnd.AppHost/bin/Debug/net9.0/KnowYourToolset.BackEnd.AppHost.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/KnowYourToolset.BackEnd.Api",
+            "cwd": "${workspaceFolder}/KnowYourToolset.BackEnd.AppHost",
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",
-                "pattern": "listening on:\\s+(https?://\\S+)"
+                "uriFormat": "https://localhost:17271",
+                "pattern": "listening on:.*https://localhost:.*"
             },
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
@@ -22,24 +23,18 @@
             }
         },
         {
-            "name": ".NET Core Attach",
-            "type": "coreclr",
-            "request": "attach"
+            "type": "msedge",
+            "request": "launch",
+            "name": "Debug Angular",
+            "url": "https://localhost:44486/home",
+            "webRoot": "${workspaceFolder}/ui-with-bff"
         },
         {
-            "name": "Docker .NET Core Launch",
-            "type": "docker",
+            "name": "ng test",
+            "type": "chrome",
             "request": "launch",
-            "preLaunchTask": "docker-run: debug",
-            "netCore": {
-                "appProject": "${workspaceFolder}/KnowYourToolset.BackEnd.Api/KnowYourToolset.BackEnd.Api.csproj"
-            },
-            "dockerServerReadyAction": {
-                "uriFormat": "http://localhost:49154",
-                "action": "openExternally",
-                "pattern": "listening on:.*http://.*:.*",
-                "containerName": "knowyourtoolsetbackend:dev"
-            }
+            "preLaunchTask": "npm: test",
+            "url": "http://localhost:9876/debug.html"
         }
     ]
 }

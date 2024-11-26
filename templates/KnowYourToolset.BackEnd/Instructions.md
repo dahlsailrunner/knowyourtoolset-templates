@@ -18,8 +18,6 @@ This solution was generated from an ASP.NET Core WebAPI template that comes with
   - Now try the main `WeatherForecast` method - it should work
   - Use a value of `11111` for the `postalCode` input and it will throw an exception and return a `500` response
   - Use a value of `22222` for the `postalCode` input and it will throw an exception and return a `400` response with an additional message
-- Check log entries
-  - Should be available at [http://localhost:5341](http://localhost:5341)
 - Run unit tests
   - A few unit tests are included with mock data
 - Check out the liveness health check at `/health`
