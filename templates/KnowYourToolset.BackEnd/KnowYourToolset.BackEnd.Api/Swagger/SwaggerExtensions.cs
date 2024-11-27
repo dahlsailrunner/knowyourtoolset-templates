@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace KnowYourToolset.BackEnd.Api.Swagger;
@@ -9,7 +11,7 @@ public static class SwaggerExtensions
     public static IServiceCollection AddSwaggerFeatures(this IServiceCollection services)
     {
         services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
-        services.AddSwaggerGen();
+        services.AddSwaggerGen(o => o.OperationFilter<ProblemDetailsResponseOperationFilter>());
 
         return services;
     }
@@ -41,5 +43,36 @@ public static class SwaggerExtensions
             });
 
         return app;
+    }
+}
+
+public class ProblemDetailsResponseOperationFilter : IOperationFilter 
+{
+    public void Apply(OpenApiOperation operation, OperationFilterContext context)
+    {
+        var problemDetailsSchema = context.SchemaGenerator.GenerateSchema(typeof(ProblemDetails), context.SchemaRepository);
+
+        operation.Responses.Add("500", new OpenApiResponse
+        {
+            Description = "Internal Server Error",
+            Content = new Dictionary<string, OpenApiMediaType>
+            {
+                ["application/json"] = new OpenApiMediaType
+                {
+                    Schema = problemDetailsSchema
+                }
+            }
+        });
+        operation.Responses.Add("400", new OpenApiResponse
+        {
+            Description = "Bad Request",
+            Content = new Dictionary<string, OpenApiMediaType>
+            {
+                ["application/json"] = new OpenApiMediaType
+                {
+                    Schema = problemDetailsSchema
+                }
+            }
+        });
     }
 }

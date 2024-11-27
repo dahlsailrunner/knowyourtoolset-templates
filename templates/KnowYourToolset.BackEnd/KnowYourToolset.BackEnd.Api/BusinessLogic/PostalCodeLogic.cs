@@ -6,7 +6,6 @@ public class PostalCodeLogic(ILogger<PostalCodeLogic> logger) : IPostalCodeLogic
 
     public string GetCityForPostalCode(string postalCode)
     {
-
         logger.LogInformation("Got into the postal code logic.");
         if (string.Equals(postalCode, "11111", StringComparison.InvariantCultureIgnoreCase))
         {

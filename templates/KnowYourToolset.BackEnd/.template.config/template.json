@@ -7,30 +7,77 @@
     "type": "solution"
   },
   "identity": "KnowYourToolset.BackEnd",
-  "name": "Aspire-based solution with API, Database, Tests, and optional UI with BFF",
+  "name": "Aspire-based solution with API, Database, and Tests",
   "shortName": "kyt-aspire",
   "sourceName": "KnowYourToolset.BackEnd",
   "preferNameDirectory": true,
   "guids": ["f4850358-2d63-41fe-8bb9-e03d0fc6f2ed"],
   "symbols": {
-    "DockerSupport": {
+    "Database": {
       "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": "false"
-    }
-  },
-  "sources": [
-    {
-      "modifiers": [
+      "description": "Database provider to be used (choose one).",
+      "datatype": "choice",
+      "allowMultipleValues": false,
+      "enableQuotelessLiterals": true,
+      "choices": [
         {
-          "condition": "(!DockerSupport)",
-          "exclude": ["**/Dockerfile", "**/.dockerignore"]
+          "choice": "postgres",
+          "description": "Uses PostgreSQL as the database provider.",
+          "displayName": "PostgreSQL"
         },
         {
-          "condition": "(DockerSupport)",
-          "exclude": []
+          "choice": "sqlserver",
+          "description": "Uses SQL Server as the database provider.",
+          "displayName": "SQL Server"
+        },
+        {
+          "choice": "sqlite",
+          "description": "Uses SQLite as the database provider (no traces available).",
+          "displayName": "SQLite"
         }
-      ]
+      ],
+      "defaultValue": "postgres"
+    },
+    "POSTGRESQL": {
+      "type": "computed",
+      "value": "Database == postgres"
+    },
+    "MSSQL": {
+      "type": "computed",
+      "value": "Database == sqlserver"
+    },
+    "SQLITE": {
+      "type": "computed",
+      "value": "Database == sqlite"
+    },
+    "IsFromTemplate": {
+      "type": "computed",
+      "value": "true"
+    }
+  },
+  "primaryOutputs": [
+    {
+      "path": "KnowYourToolset.BackEnd.sln"
+    },
+    {
+      "condition": "(HostIdentifier != \"dotnetcli\")",
+      "path": "readme.md"
+    },
+    {
+      "condition": "(HostIdentifier != \"dotnetcli\")",
+      "path": "instructions.md"
+    }
+  ],
+  "postActions": [
+    {
+      "condition": "(HostIdentifier != \"dotnetcli\")",
+      "description": "Opens the readme in the editor",
+      "manualInstructions": [],
+      "actionId": "84C0DA21-51C8-4541-9940-6CA19AF04EE6",
+      "args": {
+        "files": "1;2"
+      },
+      "continueOnError": true
     }
   ]
 }

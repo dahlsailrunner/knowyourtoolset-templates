@@ -1,3 +1,4 @@
+using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -110,17 +111,23 @@ public static class Extensions
 
                 var exception = ctx.HttpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
 
-                //if (exception is ValidationException valEx)
-                //{
-                //    ctx.ProblemDetails.Status = 400;
-                //    ctx.ProblemDetails.Title = "One or more validation errors occurred.";
-                //    ctx.ProblemDetails.Extensions.Add("errors", valEx.Errors);
-                //    ctx.HttpContext.Response.StatusCode = 400;
-                //}
-                //if (ctx.ProblemDetails.Status == 500)
-                //{
-                //    ctx.ProblemDetails.Detail = "An error occurred in our API. Use the trace id when contacting us.";
-                //}
+                if (exception is ValidationException valEx)
+                {
+                    ctx.ProblemDetails.Status = 400;
+                    ctx.ProblemDetails.Title = "One or more validation errors occurred.";
+                    ctx.ProblemDetails.Extensions.Add("errors", valEx.Errors);
+                    ctx.HttpContext.Response.StatusCode = 400;
+                }
+                if (exception is ApplicationException appEx)
+                {
+                    ctx.ProblemDetails.Status = 400;
+                    ctx.ProblemDetails.Title = appEx.Message;
+                    ctx.HttpContext.Response.StatusCode = 400;
+                }
+                if (ctx.ProblemDetails.Status == 500)
+                {
+                    ctx.ProblemDetails.Detail = "An error occurred in our API. Use the trace id when contacting us.";
+                }
             });
 
         return services;
