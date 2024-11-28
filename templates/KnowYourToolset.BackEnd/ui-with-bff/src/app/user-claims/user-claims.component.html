@@ -1,0 +1,7 @@
+<h2>User Claims</h2>
+
+<mat-list>
+    @for (claim of claims$ | async; track $index) {
+        <mat-list-item data-testid="claimvalue">{{ claim.type }} : <strong>{{ claim.value }}</strong></mat-list-item>
+    }           
+</mat-list>

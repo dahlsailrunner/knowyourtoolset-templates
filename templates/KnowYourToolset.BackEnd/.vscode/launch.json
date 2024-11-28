@@ -26,15 +26,8 @@
             "type": "msedge",
             "request": "launch",
             "name": "Debug Angular",
-            "url": "https://localhost:44486/home",
+            "url": "https://localhost:44333/home",
             "webRoot": "${workspaceFolder}/ui-with-bff"
-        },
-        {
-            "name": "ng test",
-            "type": "chrome",
-            "request": "launch",
-            "preLaunchTask": "npm: test",
-            "url": "http://localhost:9876/debug.html"
         }
     ]
 }

@@ -1,0 +1,58 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <!--#if (!IsFromTemplate) -->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>$(DefineConstants);POSTGRESQL</DefineConstants>
+  </PropertyGroup>
+  <!--#endif -->
+
+  <ItemGroup>
+    <PackageReference Include="AspNetCore.SpaYarp" Version="2.0.1"/>    
+    <PackageReference Include="Duende.BFF.Yarp" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection.EntityFrameworkCore" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <!--#if (SQLITE)-->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.0" />
+    <!--#endif-->
+    <!--#if (POSTGRESQL)-->
+    <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.0" />
+    <!--#endif-->
+    <!--#if (MSSQL)-->
+    <PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />    
+    <!--#endif-->
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\KnowYourToolset.BackEnd.ServiceDefaults\KnowYourToolset.BackEnd.ServiceDefaults.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <!-- File with mtime of last successful npm install -->
+    <NpmInstallStampFile>../node_modules/.install-stamp</NpmInstallStampFile>
+  </PropertyGroup>
+  <Target Name="NpmInstall" BeforeTargets="BeforeBuild" Inputs="../package.json" Outputs="$(NpmInstallStampFile)" Condition="$(Configuration) == Debug">
+    <Exec Command="npm install" />
+    <Touch Files="$(NpmInstallStampFile)" AlwaysCreate="true" />
+  </Target>
+  
+  <PropertyGroup>
+    <SpaRoot>../</SpaRoot>
+    <SpaClientUrl>http://localhost:4200</SpaClientUrl>
+    <SpaLaunchCommand>npm start</SpaLaunchCommand>
+    <!-- <UserSecretsId>0c19ebc2-4dee-45a6-85f9-17bb61717fcc</UserSecretsId> -->
+    <!-- <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS> -->
+  </PropertyGroup>
+
+  
+    
+</Project>

@@ -1,13 +1,13 @@
 ﻿{
   "$schema": "http://json.schemastore.org/template",
   "author": "Erik Dahl",
-  "classifications": ["KnowYourToolset Aspire"],
+  "classifications": ["Aspire", "Database", "UI with BFF"],
   "tags": {
     "language": "C#",
     "type": "solution"
   },
   "identity": "KnowYourToolset.BackEnd",
-  "name": "Aspire-based solution with API, Database, and Tests",
+  "name": "KnowYourToolset Aspire",
   "shortName": "kyt-aspire",
   "sourceName": "KnowYourToolset.BackEnd",
   "preferNameDirectory": true,
@@ -38,6 +38,27 @@
       ],
       "defaultValue": "postgres"
     },
+    "UserInterface": {
+      "type": "parameter",
+      "description": "UI framework to include for a UI with BFF to call the API (choose one).",
+      "displayName": "User Interface to use -- with BFF (Backend For Frontend)",
+      "datatype": "choice",
+      "allowMultipleValues": false,
+      "enableQuotelessLiterals": true,
+      "choices": [
+        {
+          "choice": "none",
+          "description": "Do not include a UI - only the Swagger UI will be included.",
+          "displayName": "None"
+        },
+        {
+          "choice": "angular",
+          "description": "Use Angular as the UI with a BFF.",
+          "displayName": "Angular"
+        }
+      ],
+      "defaultValue": "none"
+    },
     "POSTGRESQL": {
       "type": "computed",
       "value": "Database == postgres"
@@ -50,11 +71,25 @@
       "type": "computed",
       "value": "Database == sqlite"
     },
+    "ANGULAR": {
+      "type": "computed",
+      "value": "UserInterface == angular"
+    },
     "IsFromTemplate": {
       "type": "computed",
       "value": "true"
     }
   },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "!(ANGULAR)",
+          "exclude": ["**/ui-with-bff/**"]
+        }
+      ]
+    }
+  ],
   "primaryOutputs": [
     {
       "path": "KnowYourToolset.BackEnd.sln"

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0" />
 
@@ -12,7 +12,7 @@
   </PropertyGroup>
   <!--#if (!IsFromTemplate) -->
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>$(DefineConstants);MSSQL</DefineConstants>
+    <DefineConstants>$(DefineConstants);POSTGRESQL</DefineConstants>
   </PropertyGroup>
   <!--#endif-->
 
@@ -28,6 +28,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\KnowYourToolset.BackEnd.Api\KnowYourToolset.BackEnd.Api.csproj" />
+    <!--#if (ANGULAR)-->
+    <ProjectReference Include="..\ui-with-bff\bff\KnowYourToolset.BackEnd.Bff.csproj" />
+    <!--#endif-->
   </ItemGroup>
 
 </Project>

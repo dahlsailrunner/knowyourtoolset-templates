@@ -8,7 +8,7 @@
   </PropertyGroup>
   <!--#if (!IsFromTemplate) -->
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>$(DefineConstants);MSSQL</DefineConstants>
+    <DefineConstants>$(DefineConstants);POSTGRESQL</DefineConstants>
   </PropertyGroup>
   <!--#endif-->
 
