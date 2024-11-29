@@ -1,11 +1,11 @@
 ﻿{
   "$schema": "http://json.schemastore.org/template",
   "author": "Erik Dahl",
-  "classifications": [ "KnowYourToolset Package" ],
-  "tags": { "language": "C#"},
+  "classifications": ["KnowYourToolset Package"],
+  "tags": { "language": "C#", "type": "project" },
   "identity": "KnowYourToolset.NuGetPackage",
   "name": "KnowYourToolset NuGet Package",
   "shortName": "kyt-package",
   "sourceName": "KnowYourToolset.Package",
   "preferNameDirectory": true
-} 
+}

@@ -12,7 +12,7 @@
   </PropertyGroup>
   <!--#if (!IsFromTemplate) -->
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>$(DefineConstants);POSTGRESQL</DefineConstants>
+    <DefineConstants>$(DefineConstants);POSTGRESQL,ANGULAR</DefineConstants>
   </PropertyGroup>
   <!--#endif-->
 

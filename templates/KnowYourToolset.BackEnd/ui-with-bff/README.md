@@ -1,3 +1,11 @@
 # KnowYourToolset.BackEnd UI
 
-Get some good info in here....
+## Angular Notes
+
+## Backend For Frontend
+
+### Remote API Setup
+
+## Hosting Setup
+
+### Container Build Process
