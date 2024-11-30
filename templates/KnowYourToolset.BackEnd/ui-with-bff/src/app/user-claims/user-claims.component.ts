@@ -4,6 +4,7 @@ import { MatListModule } from '@angular/material/list';
 import { UserClaimsService } from './user-claims.service';
 import { Claim } from '../core/types/user';
 import { Observable } from 'rxjs';
+import { PageTitleService } from '../core/page-title.service';
 
 @Component({
   selector: 'app-user-claims',
@@ -14,7 +15,15 @@ import { Observable } from 'rxjs';
 export class UserClaimsComponent {
   readonly claims$ : Observable<Claim[]>;
 
-  constructor(private userClaimsService: UserClaimsService) {
-    this.claims$ = this.userClaimsService.claims$;
+  constructor(
+    private pageTitleService : PageTitleService,
+    private userClaimsService: UserClaimsService) {
+    this.claims$ = this.userClaimsService.getClaims();
+  }
+
+  ngOnInit(): void {
+    this.pageTitleService.setPageTitle({
+      pageName: 'User Claims',
+    });
   }
 }

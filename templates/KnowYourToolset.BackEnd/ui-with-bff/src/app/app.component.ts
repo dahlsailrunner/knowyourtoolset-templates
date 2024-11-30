@@ -1,18 +1,21 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { AsyncPipe } from '@angular/common';
-import { map, Observable, shareReplay } from 'rxjs';
+import { map, Observable, shareReplay, Subject, takeUntil } from 'rxjs';
+import { PageTitleService } from './core/page-title.service';
+import { PageTitleInfo } from './core/types/page-title-info';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, 
+    RouterLink,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
@@ -23,8 +26,11 @@ import { map, Observable, shareReplay } from 'rxjs';
   templateUrl:'./app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
-  title = 'kyt-ui';
+export class AppComponent implements OnInit, OnDestroy {
+  
+  constructor(private pageTitleService: PageTitleService) { }
+
+  pageTitle?: string;
 
   private breakpointObserver = inject(BreakpointObserver);
 
@@ -33,4 +39,20 @@ export class AppComponent {
       map(result => result.matches),
       shareReplay()
     );
+
+  private onDestroyed: Subject<void> = new Subject<void>();
+  
+  ngOnInit(): void {
+    this.pageTitleService.pageTitleSet$.pipe(
+      takeUntil(this.onDestroyed)
+    ).subscribe((pageName) => this.onPageSet(pageName));
+  }
+
+  onPageSet(newPageInfo: PageTitleInfo): void {
+    this.pageTitle = newPageInfo.pageName;
+  }
+
+  ngOnDestroy(): void {
+    throw new Error('Method not implemented.');
+  }
 }

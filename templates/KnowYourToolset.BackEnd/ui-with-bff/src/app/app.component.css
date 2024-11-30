@@ -17,5 +17,10 @@
 }
 
 .main {
-  padding:20px;
+  padding:30px;
+  padding-top:20px;
+}
+
+h1 {
+  color: var(--mat-primary);
 }

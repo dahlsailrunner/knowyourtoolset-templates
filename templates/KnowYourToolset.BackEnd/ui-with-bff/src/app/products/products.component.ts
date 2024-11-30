@@ -3,6 +3,7 @@ import { Product } from './types';
 import { Observable, Subscription } from 'rxjs';
 import { ProductService } from './product-service';
 import { SubscriptionService } from '../core/subscription.service';
+import { PageTitleService } from '../core/page-title.service';
 
 @Component({
   selector: 'app-products',
@@ -18,6 +19,7 @@ export class ProductsComponent implements OnInit {
   error: any;
 
   constructor(
+    private pageTitleService : PageTitleService,
     private productService: ProductService,
     private subscriptionService: SubscriptionService
   ) {
@@ -25,6 +27,9 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.pageTitleService.setPageTitle({
+      pageName: 'Products',
+    });
     this.subscription = this.getProducts();
   }
 

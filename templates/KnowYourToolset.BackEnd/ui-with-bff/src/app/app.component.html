@@ -4,9 +4,9 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
     <mat-nav-list>
-      <a mat-list-item href="/">Home</a>
-      <a mat-list-item href="/user-claims">Claims</a>
-      <a mat-list-item href="/products">Products</a>
+      <a mat-list-item routerLink="/">Home</a>
+      <a mat-list-item routerLink="/user-claims">Claims</a>
+      <a mat-list-item routerLink="/products">Products</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -24,8 +24,8 @@
     </mat-toolbar>
 
     <main class="main">
-      <div class="content">
-        <h1>Hello world</h1>
+      <div class="header">
+        <h1>{{ pageTitle }}</h1>
       </div>
     
       <router-outlet />
