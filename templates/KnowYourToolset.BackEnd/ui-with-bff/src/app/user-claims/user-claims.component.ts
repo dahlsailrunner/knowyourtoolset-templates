@@ -2,9 +2,9 @@ import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { UserClaimsService } from './user-claims.service';
-import { Claim } from '../core/types/user';
 import { Observable } from 'rxjs';
 import { PageTitleService } from '../core/page-title.service';
+import { Claim } from '../core/authentication.service';
 
 @Component({
   selector: 'app-user-claims',

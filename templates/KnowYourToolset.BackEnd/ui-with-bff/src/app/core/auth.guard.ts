@@ -1,24 +1,72 @@
 import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
-import { AuthService } from './auth.service';
-import { catchError, map, of } from 'rxjs';
+import { map } from 'rxjs';
+import { AuthenticationService } from './authentication.service';
 
 export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
 
-  var authService = inject(AuthService);
+  var authService = inject(AuthenticationService);
 
-  return authService.simpleGetClaims().pipe(
-    map(claims => {
-      console.log('claims:', claims);      
-      // could check individual claims here      
-      return true; // all routes are allowed for authenticated users
-    }), 
-    catchError(() => {
-      window.location.href = '/account/login?returnUrl=' + encodeURI(state.url);
-      return of(false);
+  return authService.getIsAuthenticated().pipe(
+    map(isAuthenticated => {
+      if (isAuthenticated) {        
+        return true; // all routes are allowed for authenticated users      
+      }
+      else {
+        window.location.href = '/account/login?returnUrl=' + encodeURI(state.url);
+        return false;
+      }
     })
   );
 };
 
+export function requiredClaimValueGuard(claimName: string, claimValue: string) : CanActivateFn {
+  return (_route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
 
+    var authService = inject(AuthenticationService);
+    var router = inject(Router);
+
+    return authService.getSession().pipe(
+      map(session => {
+        { 
+          console.log('user claims:', session);       
+          if (!session) {  // user is not even logged in
+            window.location.href = '/account/login?returnUrl=' + encodeURI(state.url);
+            return false;
+          }
+          var claim = session.find(c => c.type === claimName)?.value;
+          if (claim === claimValue) {
+            return true;
+          }
+          return router.createUrlTree(['/access-denied']);
+        }
+      })
+    );
+  };
+}
+
+
+
+// export const authorizationGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+
+//   var authService = inject(AuthenticationService);
+//   var router = inject(Router);
+
+//   return authService.getSession().pipe(
+//     map(session => {
+//       { 
+//         console.log('user claims:', session);       
+//         if (!session) {  // user is not even logged in
+//           window.location.href = '/account/login?returnUrl=' + encodeURI(state.url);
+//           return false;
+//         }
+//         var givenName = session.find(c => c.type === 'given_name')?.value;
+//         if (givenName === 'Bob') {
+//           return true;
+//         }
+//         return router.createUrlTree(['/access-denied']);
+//       }
+//     })
+//   );
+// };
 

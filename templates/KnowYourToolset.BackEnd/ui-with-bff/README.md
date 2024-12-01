@@ -2,7 +2,7 @@
 
 ## Angular Notes
 
-Using Angular Material for this project.
+Angular Material is used in this project.
 
 ## Backend For Frontend
 
@@ -19,6 +19,18 @@ and `account/logout` endpoints available.
 If you wanted to force authentication for EVERY page in the application -- even the home
 page, you would comment IN the `initializeAuth` function in the `src/app/core/auth.service.ts` file,
 and also the reference to it in the `src/app/app.config.ts` for the `APP_INITIALIZER`.
+
+### Authorization
+
+The demo IdentityServer has two accounts (bob and alice) that you can use to sign in.
+There is an `authGuard` that simply requires an authenticated user - and that guard is
+used on the `/user-claims` page.
+
+There is also a `requiredClaimValueGuard` that takes a claim name and value
+that are required to access the `/products` page.
+
+This is configured in the `src/app/app.routes.ts` file, and the code for the
+guards is in the `src/app/core/auth.guard.ts` file.
 
 ### Remote API Setup
 

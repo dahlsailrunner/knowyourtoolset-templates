@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Claim } from '../core/types/user';
+import { Claim } from '../core/authentication.service';
 
 @Injectable({
   providedIn: 'root'
