@@ -21,11 +21,23 @@
         </button>
       }
       <span>KnowYourToolset UI</span>
+
+      <span class="example-spacer"></span>
+
+      @if (userName) {
+        <span style="padding-right:20px;">{{ userName }}</span>
+        <a href="/account/logout?sid=1309997128BD922833DFA29CCFFBCDF4"><button mat-raised-button>Logout</button></a>
+      }
+      @else {
+        <a href="/account/login"><button mat-raised-button>Login</button></a>
+      }     
+
+      
     </mat-toolbar>
 
     <main class="main">
       <div class="header">
-        <h1>{{ pageTitle }}</h1>
+        <h1>{{ pageTitle }}</h1> 
       </div>
     
       <router-outlet />
@@ -33,6 +45,4 @@
 
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-
 

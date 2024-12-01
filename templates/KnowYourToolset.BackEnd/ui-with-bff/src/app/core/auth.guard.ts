@@ -14,9 +14,7 @@ export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: R
       return true; // all routes are allowed for authenticated users
     }), 
     catchError(() => {
-      console.log('trying to redirect based on error');
-      const redirectPath = window.location.pathname + window.location.search;
-      window.location.href = '/account/login?returnUrl=' + encodeURI(redirectPath);
+      window.location.href = '/account/login?returnUrl=' + encodeURI(state.url);
       return of(false);
     })
   );

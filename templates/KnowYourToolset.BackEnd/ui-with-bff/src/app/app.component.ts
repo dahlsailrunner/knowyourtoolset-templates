@@ -10,6 +10,7 @@ import { AsyncPipe } from '@angular/common';
 import { map, Observable, shareReplay, Subject, takeUntil } from 'rxjs';
 import { PageTitleService } from './core/page-title.service';
 import { PageTitleInfo } from './core/types/page-title-info';
+import { AuthService } from './core/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -27,10 +28,14 @@ import { PageTitleInfo } from './core/types/page-title-info';
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit, OnDestroy {
+
   
-  constructor(private pageTitleService: PageTitleService) { }
+  constructor(private pageTitleService: PageTitleService,
+    private authService: AuthService,
+  ) { }
 
   pageTitle?: string;
+  userName?: string;
 
   private breakpointObserver = inject(BreakpointObserver);
 
@@ -46,10 +51,21 @@ export class AppComponent implements OnInit, OnDestroy {
     this.pageTitleService.pageTitleSet$.pipe(
       takeUntil(this.onDestroyed)
     ).subscribe((pageName) => this.onPageSet(pageName));
+
+    this.authService.simpleGetClaims().pipe(
+      takeUntil(this.onDestroyed)
+    ).subscribe(claims => {
+      var userNameClaim = claims.find(c => c.type === 'name');
+      this.userName = userNameClaim?.value;
+    });
   }
 
   onPageSet(newPageInfo: PageTitleInfo): void {
     this.pageTitle = newPageInfo.pageName;
+  }
+
+  logout() {
+    throw new Error('Method not implemented.');
   }
 
   ngOnDestroy(): void {

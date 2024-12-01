@@ -29,7 +29,11 @@ builder.AddSqlServerDbContext<LocalDbContext>("DbConn");
 builder.Services.AddDataProtection()
      .PersistKeysToDbContext<LocalDbContext>();
 
-builder.Services.AddBff(o => o.ManagementBasePath = "/account")
+builder.Services.AddBff(o =>
+    {
+      o.ManagementBasePath = "/account";
+      o.RevokeRefreshTokenOnLogout = false; // prevent error: https://github.com/DuendeSoftware/foss/issues/51
+    })
   .AddRemoteApis()
   .AddServerSideSessions();
 
