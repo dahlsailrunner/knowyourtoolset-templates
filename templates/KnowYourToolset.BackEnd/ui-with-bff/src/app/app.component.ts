@@ -34,10 +34,12 @@ export class AppComponent implements OnInit, OnDestroy {
     private authService: AuthenticationService,
   ) { 
     this.userName$ = this.authService.getUsername();
+    this.logoutUrl$ = this.authService.getLogoutUrl();
   }
 
   pageTitle?: string;
   userName$: Observable<string | undefined>;
+  logoutUrl$: Observable<string | undefined>;
 
   private breakpointObserver = inject(BreakpointObserver);
 

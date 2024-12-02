@@ -26,7 +26,7 @@
 
       @if (userName$ | async; as userName) {
         <span style="padding-right:20px;">{{ userName }}</span>
-        <a href="/account/logout?sid=1309997128BD922833DFA29CCFFBCDF4"><button mat-raised-button>Logout</button></a>
+        <a href="{{ logoutUrl$ | async }}"><button mat-raised-button>Logout</button></a>
       }
       @else {
         <a href="/account/login"><button mat-raised-button>Login</button></a>

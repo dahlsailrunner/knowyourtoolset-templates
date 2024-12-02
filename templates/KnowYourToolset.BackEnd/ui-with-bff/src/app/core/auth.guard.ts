@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } fr
 import { map } from 'rxjs';
 import { AuthenticationService } from './authentication.service';
 
-export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+export const loggedInGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
 
   var authService = inject(AuthenticationService);
 
@@ -44,29 +44,3 @@ export function requiredClaimValueGuard(claimName: string, claimValue: string) :
     );
   };
 }
-
-
-
-// export const authorizationGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-
-//   var authService = inject(AuthenticationService);
-//   var router = inject(Router);
-
-//   return authService.getSession().pipe(
-//     map(session => {
-//       { 
-//         console.log('user claims:', session);       
-//         if (!session) {  // user is not even logged in
-//           window.location.href = '/account/login?returnUrl=' + encodeURI(state.url);
-//           return false;
-//         }
-//         var givenName = session.find(c => c.type === 'given_name')?.value;
-//         if (givenName === 'Bob') {
-//           return true;
-//         }
-//         return router.createUrlTree(['/access-denied']);
-//       }
-//     })
-//   );
-// };
-
