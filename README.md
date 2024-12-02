@@ -28,7 +28,7 @@ of the box from [Visual Studio](https://visualstudio.microsoft.com/), [Rider](ht
 ## Use cases
 
 These templates can be modified to include YOUR best practices and cross-cutting concerns.  Just fork the repo
-and make them your own!  :)  See [this blog post](https://knowyourtoolset.com/2021/08/creating-useful-net-templates/)
+and make them your own!  :)  See [this blog post](https://knowyourtoolset.com/2024/11/templates-optional-content/)
 for more details on why and how you can do this.
 
 Primary use-cases for these templates:
